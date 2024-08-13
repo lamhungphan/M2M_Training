@@ -5,6 +5,24 @@ public class HocSinh {
     private String hoTen;
     private double diemTrungBinh;
 
+    public void setMaso(String maso) {
+        this.maso = maso;
+    }
+
+    public void setHoTen(String hoTen) throws IllegalArgumentException {
+        if (hoTen.matches(".*\\d.*")) {
+            throw new IllegalArgumentException("Tên không được chứa số");
+        }
+        this.hoTen = hoTen;
+    }
+
+    public void setDiemTrungBinh(double diemTrungBinh) throws IllegalArgumentException {
+        if (diemTrungBinh > 10 || diemTrungBinh < 0) {
+            throw new IllegalArgumentException("Điểm trong phạm vi từ 0 - 10");
+        }
+        this.diemTrungBinh = diemTrungBinh;
+    }
+
     public HocSinh() {
     }
 
@@ -14,31 +32,7 @@ public class HocSinh {
         this.diemTrungBinh = diemTrungBinh;
     }
 
-    public String getMaso() {
-        return maso;
-    }
-
-    public void setMaso(String maso) {
-        this.maso = maso;
-    }
-
-    public String getHoTen() {
-        return hoTen;
-    }
-
-    public void setHoTen(String hoTen) {
-        this.hoTen = hoTen;
-    }
-
-    public double getDiemTrungBinh() {
-        return diemTrungBinh;
-    }
-
-    public void setDiemTrungBinh(double diemTrungBinh) {
-        this.diemTrungBinh = diemTrungBinh;
-    }
-
-    public String xepHangHocLuc() {
+    private String xepHangHocLuc() {
         if (diemTrungBinh < 3) {
             return "YẾU";
         } else if (diemTrungBinh < 5) {
@@ -52,12 +46,12 @@ public class HocSinh {
         }
     }
 
-    public void hienThiHocSinh() {
+    public void hienThiThongTin() {
         System.out.println("----------------------------------------");
-        System.out.println("Mã số: " + maso);
-        System.out.println("Họ tên: " + hoTen);
-        System.out.println("Điểm trung bình: " + diemTrungBinh);
-        System.out.println("Học lực: " + xepHangHocLuc());
+        System.out.println("Mã số: " + this.maso);
+        System.out.println("Họ tên: " + this.hoTen);
+        System.out.println("Điểm trung bình: " + this.diemTrungBinh);
+        System.out.println("Học lực: " + this.xepHangHocLuc());
         System.out.println();
     }
 }

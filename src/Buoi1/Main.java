@@ -6,34 +6,46 @@ public class Main {
     public static void main(String[] args) {
         DanhSachHocSinh lop1A = new DanhSachHocSinh();
         Scanner scanner = new Scanner(System.in);
-        String maSo;
-        String hoTen;
-        double diemTrungBinh;
 
         System.out.println("Nhập số lượng học sinh");
-        int soLuongHocSinh = scanner.nextInt(); scanner.nextLine();
+        int soLuongHocSinh = scanner.nextInt();
+        scanner.nextLine();
         for (int i = 0; i < soLuongHocSinh; i++) {
+            HocSinh hs = new HocSinh();
+
             System.out.println("Thông tin sinh viên thứ: " + (i + 1));
+
             System.out.println("Nhập mã số: ");
-            maSo = scanner.nextLine();
+            hs.setMaso(scanner.nextLine());
 
             System.out.println("Nhập họ tên: ");
-            do {
-                hoTen = scanner.nextLine();
-                if (hoTen.matches(".*\\d.*")) {
-                    System.out.println("Tên không được chứa số");
+            int loiNhapTen = 0;
+            while (loiNhapTen < 3) {
+                try {
+                    hs.setHoTen(scanner.nextLine());
+                    break;
+                } catch (IllegalArgumentException e) {
+                    loiNhapTen++;
+                    System.out.println(e.getMessage() + " Số lần thử lại: " + loiNhapTen);
                 }
-            } while (hoTen.matches(".*\\d.*"));
+            }
 
             System.out.println("Nhập điểm trung bình: ");
-            do {
-                diemTrungBinh = scanner.nextDouble(); scanner.nextLine();
-                if (diemTrungBinh > 10 || diemTrungBinh < 0) {
-                    System.out.println("Mời nhập lại (0-10)");
+            int loiNhapDiem = 0;
+            while (loiNhapDiem < 3) {
+                try {
+                    hs.setDiemTrungBinh(scanner.nextDouble());
+                    scanner.nextLine();
+                    break;
+                } catch (IllegalArgumentException e) {
+                    loiNhapDiem++;
+                    System.out.println(e.getMessage() + " Số lần thử lại: " + loiNhapDiem);
                 }
-            } while (diemTrungBinh > 10 || diemTrungBinh < 0);
-
-            HocSinh hs = new HocSinh(maSo, hoTen, diemTrungBinh);
+            }
+            if (loiNhapDiem == 3) {
+                System.out.println("Bạn đã nhập sai điểm quá 3 lần. Dừng nhập điểm.");
+                break;
+            }
             lop1A.themHocSinh(hs);
         }
         lop1A.hienThiDanhSachHocSinh();

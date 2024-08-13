@@ -9,17 +9,13 @@ public class DanhSachHocSinh {
     public DanhSachHocSinh() {
     }
 
-    public DanhSachHocSinh(List<HocSinh> dshs) {
-        this.dshs = dshs;
-    }
-
     public void themHocSinh(HocSinh hocSinh) {
         dshs.add(hocSinh);
     }
 
     public void hienThiDanhSachHocSinh() {
         for (HocSinh hs : dshs) {
-            hs.hienThiHocSinh();
+            hs.hienThiThongTin();
         }
     }
 }
