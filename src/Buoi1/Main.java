@@ -29,6 +29,10 @@ public class Main {
                     System.out.println(e.getMessage() + " Số lần thử lại: " + loiNhapTen);
                 }
             }
+            if (loiNhapTen == 3) {
+                System.out.println("Bạn đã nhập sai tên quá 3 lần. Dừng chương trình.");
+                break;
+            }
 
             System.out.println("Nhập điểm trung bình: ");
             int loiNhapDiem = 0;
@@ -43,7 +47,7 @@ public class Main {
                 }
             }
             if (loiNhapDiem == 3) {
-                System.out.println("Bạn đã nhập sai điểm quá 3 lần. Dừng nhập điểm.");
+                System.out.println("Bạn đã nhập sai điểm quá 3 lần. Dừng chương trình.");
                 break;
             }
             lop1A.themHocSinh(hs);
